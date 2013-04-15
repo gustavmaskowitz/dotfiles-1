@@ -15,8 +15,8 @@ set nobackup        " backups are for wimps
 set history=50      " keep 50 lines of command line history
 
 set noerrorbells    " damn that beep to hell
-set novisualbell    " no terminal visual bell
-set t_vb=           " no terminal visual bell
+set visualbell      " enable terminal visual bell, but...
+set t_vb=           " ...unset the code to do it. (MacVim needs this)
 set magic           " use 'magic' patterns  (extended regexp) in search
 set ignorecase      " ignore case during searches
 set smartcase       " all lower/upper = case insensitive, \c \C overrides
@@ -60,10 +60,6 @@ set textwidth=0
 set wrapmargin=0
 set formatoptions+=l
 
-" ===================================================================
-" MAPpings
-" ===================================================================
-
 " When the backspace key sends a "delete" character
 " then you simply map the "delete" to a "backspace" (CTRL-H):
 map <Del> <C-H>
@@ -73,11 +69,6 @@ map Q gq
 
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
-
-
-" ===================================================================
-" Colors
-" ===================================================================
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -95,9 +86,9 @@ if has("gui_running")
 
   let os=substitute(system('uname'), '\n', '', '')
   if os == 'Darwin' || os == 'Mac'
-    set guifont=Menlo:h14
-    " set guifont=Monaco:h14
-    " set guifont=Andale\ Mono:h14
+    set guifont=Menlo:h16
+    set guicursor+=a:blinkon0
+    set guioptions+=T
   elseif os == 'Linux'
     set guifont=Monospace\ 12
   endif
