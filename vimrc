@@ -83,11 +83,14 @@ endif
 
 " GVIM preferences
 if has("gui_running")
+  " CUA Mode (shift+arrows select in insert mode, etc.)
+  source $VIMRUNTIME/mswin.vim
+ 
   set showtabline=2             " always show the tab bar
   set guioptions-=tT            " turn off the menu tearoffs
   colorscheme zellner           " mimics gedit/medit/etc.
   set t_Co=256                  " 256 colors
-  set lines=26 columns=80       " we like 80x24
+  set lines=25 columns=80       " we like 80x24
 
   let os=substitute(system('uname'), '\n', '', '')
   if os == 'Darwin' || os == 'Mac'
@@ -116,7 +119,7 @@ if has("gui_running")
       if &buftype=='quickfix'
         let name = '[Quickfix]'
       else
-        let name = '[Untitled]'
+        let name = '[No Name]'
       endif
     else
       " get only the file name
