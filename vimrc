@@ -12,7 +12,7 @@ set shiftwidth=4    " number of spaces used for autoindent insertions
 set tabstop=4       " tabstop positions
 
 set nobackup        " backups are for wimps
-set history=250     " keep 50 lines of command line history
+set history=250     " keep 250 lines of command line history
 
 set noerrorbells    " damn that beep to hell
 set visualbell      " enable terminal visual bell, but...
