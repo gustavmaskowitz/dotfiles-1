@@ -12,7 +12,7 @@ set shiftwidth=4    " number of spaces used for autoindent insertions
 set tabstop=4       " tabstop positions
 
 set nobackup        " backups are for wimps
-set history=50      " keep 50 lines of command line history
+set history=250     " keep 50 lines of command line history
 
 set noerrorbells    " damn that beep to hell
 set visualbell      " enable terminal visual bell, but...
@@ -38,7 +38,7 @@ set highlight=8r,db,es,hs,mb,Mr,nu,rs,sr,tb,vr,ws
 set nostartofline
 
 " what info to store from an editing session in the viminfo file
-set viminfo=%,'50,\"100,:100,n~/.viminfo
+set viminfo='50,\"100,:100,n~/.viminfo
 
 " allow the last line to be a modeline - useful when
 " the last line gives the preferred textwidth
@@ -67,6 +67,10 @@ map <Del> <C-H>
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+" Make shift-insert work like in Xterm
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
+
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
@@ -80,15 +84,15 @@ endif
 " GVIM preferences
 if has("gui_running")
   set showtabline=2             " always show the tab bar
-  set guioptions-=t             " turn off the menu tearoffs
+  set guioptions-=tT            " turn off the menu tearoffs
   colorscheme zellner           " mimics gedit/medit/etc.
   set t_Co=256                  " 256 colors
+  set lines=26 columns=80       " we like 80x24
 
   let os=substitute(system('uname'), '\n', '', '')
   if os == 'Darwin' || os == 'Mac'
     set guifont=Menlo:h16
     set guicursor+=a:blinkon0
-    set guioptions+=T
   elseif os == 'Linux'
     set guifont=Monospace\ 12
   endif
@@ -112,7 +116,7 @@ if has("gui_running")
       if &buftype=='quickfix'
         let name = '[Quickfix]'
       else
-        let name = '[No Name]'
+        let name = '[Untitled]'
       endif
     else
       " get only the file name
