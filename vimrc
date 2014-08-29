@@ -91,6 +91,7 @@ if has("gui_running")
   colorscheme zellner           " mimics gedit/medit/etc.
   set t_Co=256                  " 256 colors
   set lines=25 columns=80       " we like 80x24
+  set guicursor+=a:blinkon0     " disable the blinking cursor
 
   let os=substitute(system('uname'), '\n', '', '')
   if os == 'Darwin' || os == 'Mac'
