@@ -60,6 +60,9 @@ set textwidth=0
 set wrapmargin=0
 set formatoptions+=l
 
+" When you forgot to sudo before editing a file
+cmap w!! w !sudo tee > /dev/null %
+
 " When the backspace key sends a "delete" character
 " then you simply map the "delete" to a "backspace" (CTRL-H):
 map <Del> <C-H>
